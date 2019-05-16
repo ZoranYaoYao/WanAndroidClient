@@ -124,7 +124,7 @@ class HomeModelImpl : HomeModel, CollectArticleModel {
                 it.printStackTrace()
                 onLoginListener.loginFailed(it.toString())
             }) {
-                loginAsync?.cancelByActive()
+                loginAsync?.cancelByActive() //zqs 阻止连续点击导致多次响应连接
                 loginAsync = RetrofitHelper.retrofitService.loginWanAndroid(username, password)
                 val result = loginAsync?.await()
                 result ?: let {
@@ -154,13 +154,17 @@ class HomeModelImpl : HomeModel, CollectArticleModel {
         onRegisterListener: HomePresenter.OnRegisterListener,
         username: String, password: String, repassword: String
     ) {
+        /**
+         * zqs：
+         * async(UI){} 代码块的code都是执行在UI 主线程中
+         */
         async(UI) {
             tryCatch({
                 it.printStackTrace()
                 onRegisterListener.registerFailed(it.toString())
             }) {
                 registerAsync?.cancelByActive()
-                registerAsync = RetrofitHelper.retrofitService.registerWanAndroid(
+                registerAsync = RetrofitHelper.retrofitService.registerWanAndroid(  //zqs: 调用改方法使用的是异步协程，所有如果要或许返回值的话，需要后续使用await()!!
                     username,
                     password,
                     repassword

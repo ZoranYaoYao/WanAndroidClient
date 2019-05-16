@@ -36,12 +36,14 @@
         tools:context="top.jowanxu.wanandroidclient.ui.activity.MainActivity"
         tools:openDrawer="start">
 
+        <!--中间界面-->
         <FrameLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+        <!--左滑界面-->
         <android.support.design.widget.NavigationView
             android:id="@+id/navigationView"
             android:layout_width="wrap_content"
@@ -52,6 +54,7 @@
             app:menu="@menu/activity_main_drawer" />
     </android.support.v4.widget.DrawerLayout>
 
+    <!--底部导航栏-->
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"

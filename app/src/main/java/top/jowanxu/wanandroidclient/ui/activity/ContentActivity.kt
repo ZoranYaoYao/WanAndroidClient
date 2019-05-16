@@ -90,7 +90,7 @@ class ContentActivity : BaseActivity(), CollectArticleView {
                         )
                     )
                     type = Constant.CONTENT_SHARE_TYPE
-                    startActivity(Intent.createChooser(this, getString(R.string.share_title)))
+                    startActivity(Intent.createChooser(this, getString(R.string.share_title)))  //zqs 系统分享
                 }
                 return true
             }
@@ -121,7 +121,7 @@ class ContentActivity : BaseActivity(), CollectArticleView {
                 Intent().run {
                     action = "android.intent.action.VIEW"
                     data = Uri.parse(shareUrl)
-                    startActivity(this)
+                    startActivity(this) //zqs run{}直接执行一起的代码
                 }
                 return true
             }

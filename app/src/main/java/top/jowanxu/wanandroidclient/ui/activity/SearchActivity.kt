@@ -90,7 +90,7 @@ class SearchActivity : BaseActivity(), SearchListView, CollectArticleView {
             adapter = searchAdapter
         }
         searchAdapter.run {
-            bindToRecyclerView(recyclerView)
+            bindToRecyclerView(recyclerView) //zqs: BaseQuitAdapter 快捷绑定recycleview的方式
             setOnLoadMoreListener({
                 val page = searchAdapter.data.size / 20 + 1
                 if (!isSearch) {
@@ -157,7 +157,7 @@ class SearchActivity : BaseActivity(), SearchListView, CollectArticleView {
     override fun getSearchListSmall(result: HomeListResponse) {
         result.data.datas?.let {
             searchAdapter.run {
-                replaceData(it)
+                replaceData(it) //zqs 替换adapter data数据
                 loadMoreEnd()
                 loadMoreComplete()
                 setEnableLoadMore(false)
@@ -168,7 +168,7 @@ class SearchActivity : BaseActivity(), SearchListView, CollectArticleView {
 
     override fun getSearchListSuccess(result: HomeListResponse) {
         result.data.datas?.let {
-            searchAdapter.run {
+            searchAdapter.run { //zqs_nice: 由于是操作searchAdapter流程的，所以可以通过run{}来对adapter统一处理
                 // 列表总数
                 val total = result.data.total
                 // 当前总数
@@ -333,7 +333,7 @@ class SearchActivity : BaseActivity(), SearchListView, CollectArticleView {
                         }
                         if (!isSearch) {
                             // delete data
-                            searchAdapter.remove(position)
+                            searchAdapter.remove(position) //快速删除数据某一条数据源，并跟新ui
                             searchPresenter.collectArticle(data.id, false)
                         } else {
                             val collect = data.collect
