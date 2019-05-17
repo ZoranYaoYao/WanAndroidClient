@@ -91,7 +91,7 @@ class SearchActivity : BaseActivity(), SearchListView, CollectArticleView {
         }
         searchAdapter.run {
             bindToRecyclerView(recyclerView) //zqs: BaseQuitAdapter 快捷绑定recycleview的方式
-            setOnLoadMoreListener({
+            setOnLoadMoreListener({          //zqs: BaseQuitAdapter 下滑到底部时的加载回调监听！！
                 val page = searchAdapter.data.size / 20 + 1
                 if (!isSearch) {
                     searchPresenter.getLikeList()

@@ -223,7 +223,7 @@ class CommonUseFragment : BaseFragment(), CommonUseFragmentView {
     /**
      * onBookmarkTagClickListener
      */
-    private val onBookmarkTagClickListener = TagFlowLayout.OnTagClickListener { _, position, _ ->
+    private val onBookmarkTagClickListener = TagFlowLayout.OnTagClickListener { _, position, _ -> //zqs 不需要的参数，使用_进行占位符
         if (bookmarkUseDatas.size != 0) {
             Intent(activity, ContentActivity::class.java).run {
                 putExtra(Constant.CONTENT_URL_KEY, bookmarkUseDatas[position].link)
